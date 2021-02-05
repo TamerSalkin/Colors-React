@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./styles/app.scss";
+import Colors from "./components/Colors";
+import Controls from "./components/Controls";
+import data from "./data";
 
 function App() {
+  // State
+  const [colors, setColors] = useState(data);
+  const [copyClipboard, setCopyClipboard] = useState(false);
+  const transitionEnd = () => {
+    setCopyClipboard(false);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Colors
+        colors={colors}
+        setColors={setColors}
+        setCopyClipboard={setCopyClipboard}
+      />
+      <Controls colors={colors} setColors={setColors} />
+      <div className={`copy-container ${copyClipboard ? "active" : ""}`}>
+        <div
+          className={`copy-popup ${copyClipboard ? "active" : ""}`}
+          onTransitionEnd={transitionEnd}
         >
-          Learn React
-        </a>
-      </header>
+          <h3>Copied to clipboard!</h3>
+          <h4>&#128077;</h4>
+        </div>
+      </div>
     </div>
   );
 }

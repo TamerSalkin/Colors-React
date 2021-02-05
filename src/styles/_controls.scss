@@ -1,0 +1,82 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 20vh;
+  button {
+    font-size: 1.2rem;
+    margin: 1rem;
+    padding: 1rem 2rem;
+    background: rgb(31, 33, 63);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 1rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+.library-panel,
+.generate-panel,
+.save-panel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.save-container,
+.library-container {
+  @include popup-container();
+}
+.save-popup {
+  @include popup();
+}
+.library-popup {
+  @include popup();
+  min-width: 40vw;
+  padding: 1rem;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  max-height: 50vh;
+}
+.library-popup::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #aaa;
+}
+
+.library-popup::-webkit-scrollbar-thumb {
+  background: #000;
+}
+
+.save-container.active,
+.library-container.active {
+  @include popup-container-active();
+}
+
+.save-popup.active,
+.library-popup.active {
+  @include popup-active();
+}
+
+.save-name {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+.close-save-button,
+.close-library-button {
+  @include button();
+}
+.submit-save {
+  margin: 2rem;
+  padding: 1rem 3rem;
+  background: rgb(60, 60, 70);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
