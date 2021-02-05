@@ -1,6 +1,19 @@
-function LibraryPicks({ palette, setColors }) {
+function LibraryPicks({
+  id,
+  palette,
+  setColors,
+  localLibrary,
+  setLocalLibrary,
+}) {
   const selectHandler = () => {
     setColors(palette.colors);
+  };
+  const deleteHandler = () => {
+    let localPalettes = [...localLibrary];
+    localPalettes = localPalettes.filter(
+      (item) => localPalettes.indexOf(item) !== id
+    );
+    setLocalLibrary(localPalettes);
   };
   return (
     <div className="custom-palette">
@@ -10,9 +23,14 @@ function LibraryPicks({ palette, setColors }) {
           <div style={{ background: color.hexCode }} key={color.id}></div>
         ))}
       </div>
-      <button className="pick-palette-btn" onClick={selectHandler}>
-        Select
-      </button>
+      <div className="buttons">
+        <button className="pick-palette-btn" onClick={selectHandler}>
+          Select
+        </button>
+        <button className="pick-palette-btn delete-btn" onClick={deleteHandler}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 }

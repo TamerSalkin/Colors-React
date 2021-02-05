@@ -116,8 +116,11 @@ function Controls({ colors, setColors }) {
             ? localLibrary.map((palette) => (
                 <LibraryPicks
                   palette={palette}
+                  id={localLibrary.indexOf(palette)}
                   setColors={setColors}
                   key={localLibrary.indexOf(palette)}
+                  localLibrary={localLibrary}
+                  setLocalLibrary={setLocalLibrary}
                 />
               ))
             : ""}
